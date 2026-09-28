@@ -1,0 +1,1010 @@
+{
+  "mathematics": [
+    {
+      "id": "m1",
+      "question": "What is 7 × 8?",
+      "options": [
+        "54",
+        "56",
+        "58",
+        "64"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "m2",
+      "question": "What is the square root of 81?",
+      "options": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "m3",
+      "question": "Solve: 3x = 21",
+      "options": [
+        "x = 6",
+        "x = 7",
+        "x = 8",
+        "x = 9"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "m4",
+      "question": "What is 15% of 200?",
+      "options": [
+        "20",
+        "25",
+        "30",
+        "35"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "m5",
+      "question": "What is the value of π (2 d.p.)?",
+      "options": [
+        "3.12",
+        "3.14",
+        "3.16",
+        "3.18"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "m6",
+      "question": "Simplify: 2/4",
+      "options": [
+        "1/4",
+        "1/2",
+        "2/3",
+        "3/4"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "m7",
+      "question": "What is the perimeter of a square with side 5cm?",
+      "options": [
+        "10cm",
+        "15cm",
+        "20cm",
+        "25cm"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "m8",
+      "question": "What is 9²?",
+      "options": [
+        "18",
+        "72",
+        "81",
+        "99"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "m9",
+      "question": "Convert 1/2 to a percentage",
+      "options": [
+        "25%",
+        "50%",
+        "75%",
+        "100%"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "m10",
+      "question": "What is 100 ÷ 4?",
+      "options": [
+        "20",
+        "25",
+        "30",
+        "40"
+      ],
+      "correctAnswerIndex": 1
+    }
+  ],
+  "english": [
+    {
+      "id": "e1",
+      "question": "Identify the noun: 'The dog ran quickly.'",
+      "options": [
+        "dog",
+        "ran",
+        "quickly",
+        "the"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "id": "e2",
+      "question": "What is a synonym for 'happy'?",
+      "options": [
+        "sad",
+        "joyful",
+        "angry",
+        "tired"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "e3",
+      "question": "Which sentence is in past tense?",
+      "options": [
+        "She eats",
+        "She will eat",
+        "She ate",
+        "She is eating"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "e4",
+      "question": "What is the plural of 'child'?",
+      "options": [
+        "childs",
+        "children",
+        "childrens",
+        "childes"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "e5",
+      "question": "Which word is an antonym of 'brave'?",
+      "options": [
+        "bold",
+        "cowardly",
+        "strong",
+        "fearless"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "e6",
+      "question": "Which spelling is correct?",
+      "options": [
+        "Recieve",
+        "Receive",
+        "Receeve",
+        "Receve"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "e7",
+      "question": "Identify the adverb: 'She sings beautifully.'",
+      "options": [
+        "She",
+        "sings",
+        "beautifully",
+        "None of these"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "e8",
+      "question": "Which of these is a proper noun?",
+      "options": [
+        "city",
+        "Douala",
+        "river",
+        "teacher"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "e9",
+      "question": "Choose the correct word: 'He ___ to school every day.'",
+      "options": [
+        "go",
+        "goes",
+        "going",
+        "gone"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "e10",
+      "question": "'As brave as a lion' is an example of a…",
+      "options": [
+        "metaphor",
+        "simile",
+        "personification",
+        "hyperbole"
+      ],
+      "correctAnswerIndex": 1
+    }
+  ],
+  "physics": [
+    {
+      "id": "p1",
+      "question": "What is the SI unit of force?",
+      "options": [
+        "Joule",
+        "Newton",
+        "Watt",
+        "Pascal"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "p2",
+      "question": "What is the approximate speed of light?",
+      "options": [
+        "3 × 10⁸ m/s",
+        "3 × 10⁶ m/s",
+        "3 × 10⁵ m/s",
+        "3 × 10¹⁰ m/s"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "id": "p3",
+      "question": "Which of these is a vector quantity?",
+      "options": [
+        "Speed",
+        "Mass",
+        "Velocity",
+        "Time"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "p4",
+      "question": "What is the unit of electrical resistance?",
+      "options": [
+        "Volt",
+        "Ampere",
+        "Ohm",
+        "Watt"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "p5",
+      "question": "The energy of a moving object is called…",
+      "options": [
+        "potential energy",
+        "kinetic energy",
+        "thermal energy",
+        "chemical energy"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "p6",
+      "question": "Density is calculated as…",
+      "options": [
+        "mass × volume",
+        "mass ÷ volume",
+        "volume ÷ mass",
+        "mass + volume"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "p7",
+      "question": "Which colour of visible light has the longest wavelength?",
+      "options": [
+        "Violet",
+        "Green",
+        "Blue",
+        "Red"
+      ],
+      "correctAnswerIndex": 3
+    },
+    {
+      "id": "p8",
+      "question": "Sound cannot travel through…",
+      "options": [
+        "water",
+        "steel",
+        "air",
+        "a vacuum"
+      ],
+      "correctAnswerIndex": 3
+    },
+    {
+      "id": "p9",
+      "question": "The acceleration due to gravity on Earth is about…",
+      "options": [
+        "9.8 m/s²",
+        "98 m/s²",
+        "0.98 m/s²",
+        "19.6 m/s²"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "id": "p10",
+      "question": "Power is equal to…",
+      "options": [
+        "work × time",
+        "work ÷ time",
+        "force × time",
+        "energy × distance"
+      ],
+      "correctAnswerIndex": 1
+    }
+  ],
+  "chemistry": [
+    {
+      "id": "c1",
+      "question": "What is the chemical symbol for sodium?",
+      "options": [
+        "S",
+        "So",
+        "Na",
+        "N"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "c2",
+      "question": "What is the atomic number of hydrogen?",
+      "options": [
+        "2",
+        "1",
+        "3",
+        "0"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "c3",
+      "question": "Which gas is most abundant in the air?",
+      "options": [
+        "Oxygen",
+        "Nitrogen",
+        "Carbon dioxide",
+        "Argon"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "c4",
+      "question": "The pH of an acid is…",
+      "options": [
+        "above 7",
+        "exactly 7",
+        "below 7",
+        "exactly 14"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "c5",
+      "question": "What is the formula of table salt?",
+      "options": [
+        "NaCl",
+        "KCl",
+        "NaOH",
+        "CaCl₂"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "id": "c6",
+      "question": "Which of these is a noble gas?",
+      "options": [
+        "Chlorine",
+        "Neon",
+        "Nitrogen",
+        "Fluorine"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "c7",
+      "question": "What is the charge on an electron?",
+      "options": [
+        "Positive",
+        "Negative",
+        "Neutral",
+        "It varies"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "c8",
+      "question": "Iron rusts when it is exposed to oxygen and…",
+      "options": [
+        "nitrogen",
+        "carbon dioxide",
+        "water",
+        "hydrogen"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "c9",
+      "question": "What is the formula of carbon dioxide?",
+      "options": [
+        "CO",
+        "CO₂",
+        "C₂O",
+        "C₂O₂"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "c10",
+      "question": "Which method separates insoluble sand from water?",
+      "options": [
+        "Filtration",
+        "Distillation",
+        "Chromatography",
+        "Crystallisation"
+      ],
+      "correctAnswerIndex": 0
+    }
+  ],
+  "biology": [
+    {
+      "id": "b1",
+      "question": "What is the basic unit of life?",
+      "options": [
+        "Atom",
+        "Cell",
+        "Tissue",
+        "Organ"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "b2",
+      "question": "Which organ pumps blood around the body?",
+      "options": [
+        "Lung",
+        "Liver",
+        "Heart",
+        "Kidney"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "b3",
+      "question": "What is the green pigment in plants called?",
+      "options": [
+        "Haemoglobin",
+        "Chlorophyll",
+        "Melanin",
+        "Keratin"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "b4",
+      "question": "Which gas do plants take in for photosynthesis?",
+      "options": [
+        "Oxygen",
+        "Nitrogen",
+        "Carbon dioxide",
+        "Hydrogen"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "b5",
+      "question": "A lack of which vitamin causes scurvy?",
+      "options": [
+        "Vitamin A",
+        "Vitamin B",
+        "Vitamin C",
+        "Vitamin D"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "b6",
+      "question": "What is the main function of white blood cells?",
+      "options": [
+        "Carry oxygen",
+        "Fight infection",
+        "Carry carbon dioxide",
+        "Make bone"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "b7",
+      "question": "Where is most DNA found in an animal cell?",
+      "options": [
+        "Nucleus",
+        "Ribosome",
+        "Cell membrane",
+        "Vacuole"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "id": "b8",
+      "question": "Which insect transmits malaria?",
+      "options": [
+        "Housefly",
+        "Female Anopheles mosquito",
+        "Tsetse fly",
+        "Tick"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "b9",
+      "question": "How many chromosomes are in a normal human body cell?",
+      "options": [
+        "23",
+        "44",
+        "46",
+        "48"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "b10",
+      "question": "Which type of blood vessel carries blood away from the heart?",
+      "options": [
+        "Vein",
+        "Artery",
+        "Capillary",
+        "Venule"
+      ],
+      "correctAnswerIndex": 1
+    }
+  ],
+  "computer-science": [
+    {
+      "id": "cs1",
+      "question": "What is the binary number 101 in decimal?",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "cs2",
+      "question": "Which of these is an input device?",
+      "options": [
+        "Monitor",
+        "Printer",
+        "Keyboard",
+        "Speaker"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "cs3",
+      "question": "What does RAM stand for?",
+      "options": [
+        "Read Access Memory",
+        "Random Access Memory",
+        "Rapid Access Module",
+        "Run Access Memory"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "cs4",
+      "question": "Which of these is a programming language?",
+      "options": [
+        "HTTP",
+        "Python",
+        "USB",
+        "JPEG"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "cs5",
+      "question": "How many bits are in one byte?",
+      "options": [
+        "4",
+        "8",
+        "16",
+        "32"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "cs6",
+      "question": "Which of these stores data permanently?",
+      "options": [
+        "RAM",
+        "Cache",
+        "Hard disk",
+        "CPU register"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "cs7",
+      "question": "Which of these is an operating system?",
+      "options": [
+        "Google Chrome",
+        "Linux",
+        "Microsoft Word",
+        "Microsoft Excel"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "cs8",
+      "question": "What does URL stand for?",
+      "options": [
+        "Uniform Resource Locator",
+        "Universal Reading Link",
+        "Unified Resource List",
+        "User Resource Locator"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "id": "cs9",
+      "question": "A named block of code that can be reused is called a…",
+      "options": [
+        "variable",
+        "function",
+        "comment",
+        "constant"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "cs10",
+      "question": "Which protocol is used to transfer web pages securely?",
+      "options": [
+        "HTTP",
+        "FTP",
+        "HTTPS",
+        "SMTP"
+      ],
+      "correctAnswerIndex": 2
+    }
+  ],
+  "economics": [
+    {
+      "id": "ec1",
+      "question": "Which subject studies how societies use scarce resources?",
+      "options": [
+        "Sociology",
+        "Economics",
+        "Geography",
+        "Statistics"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "ec2",
+      "question": "When the price of a normal good rises, quantity demanded usually…",
+      "options": [
+        "rises",
+        "falls",
+        "stays the same",
+        "doubles"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "ec3",
+      "question": "Which of these is a factor of production?",
+      "options": [
+        "Labour",
+        "Tax",
+        "Profit",
+        "Price"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "id": "ec4",
+      "question": "Which is a main role of a central bank?",
+      "options": [
+        "Selling consumer goods",
+        "Managing the money supply",
+        "Building roads",
+        "Running schools"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "ec5",
+      "question": "A sustained fall in the general price level is called…",
+      "options": [
+        "inflation",
+        "deflation",
+        "stagflation",
+        "recession"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "ec6",
+      "question": "What does GDP stand for?",
+      "options": [
+        "Gross Domestic Product",
+        "General Domestic Profit",
+        "Gross Development Plan",
+        "Global Domestic Product"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "id": "ec7",
+      "question": "A market with only one seller is a…",
+      "options": [
+        "perfect competition",
+        "oligopoly",
+        "monopoly",
+        "monopsony"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "ec8",
+      "question": "Which of these is an indirect tax?",
+      "options": [
+        "Income tax",
+        "Value added tax (VAT)",
+        "Poll tax",
+        "Capital gains tax"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "ec9",
+      "question": "Opportunity cost is…",
+      "options": [
+        "the price paid",
+        "the total cost of production",
+        "the profit made",
+        "the value of the next best alternative given up"
+      ],
+      "correctAnswerIndex": 3
+    },
+    {
+      "id": "ec10",
+      "question": "Why does the supply curve slope upwards?",
+      "options": [
+        "Consumers want less",
+        "Higher prices make producers willing to supply more",
+        "Costs fall as price rises",
+        "Governments fix quantities"
+      ],
+      "correctAnswerIndex": 1
+    }
+  ],
+  "geography": [
+    {
+      "id": "g1",
+      "question": "Which is the largest continent?",
+      "options": [
+        "Africa",
+        "Asia",
+        "Europe",
+        "North America"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "g2",
+      "question": "Which is the longest river in Africa?",
+      "options": [
+        "Congo",
+        "Niger",
+        "Nile",
+        "Zambezi"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "g3",
+      "question": "What is the capital city of Cameroon?",
+      "options": [
+        "Douala",
+        "Yaoundé",
+        "Bamenda",
+        "Garoua"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "g4",
+      "question": "The imaginary line at 0° latitude is called the…",
+      "options": [
+        "Prime Meridian",
+        "Equator",
+        "Tropic of Cancer",
+        "Tropic of Capricorn"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "g5",
+      "question": "Which is the highest mountain in Africa?",
+      "options": [
+        "Mount Cameroon",
+        "Mount Kenya",
+        "Kilimanjaro",
+        "Atlas Mountains"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "g6",
+      "question": "Rock formed from cooled magma or lava is…",
+      "options": [
+        "sedimentary",
+        "igneous",
+        "metamorphic",
+        "organic"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "g7",
+      "question": "Which instrument measures rainfall?",
+      "options": [
+        "Barometer",
+        "Thermometer",
+        "Rain gauge",
+        "Anemometer"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "g8",
+      "question": "Which is the largest ocean?",
+      "options": [
+        "Atlantic",
+        "Indian",
+        "Arctic",
+        "Pacific"
+      ],
+      "correctAnswerIndex": 3
+    },
+    {
+      "id": "g9",
+      "question": "Mount Cameroon is a(n)…",
+      "options": [
+        "fold mountain",
+        "active volcano",
+        "block mountain",
+        "plateau"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "g10",
+      "question": "A map scale compares…",
+      "options": [
+        "distance on the map to real distance",
+        "height to depth",
+        "population to area",
+        "climate to relief"
+      ],
+      "correctAnswerIndex": 0
+    }
+  ],
+  "history": [
+    {
+      "id": "h1",
+      "question": "In which year did French Cameroun become independent?",
+      "options": [
+        "1957",
+        "1960",
+        "1961",
+        "1972"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "h2",
+      "question": "Who was the first president of independent Cameroon?",
+      "options": [
+        "Paul Biya",
+        "Ahmadou Ahidjo",
+        "John Ngu Foncha",
+        "Ruben Um Nyobè"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "h3",
+      "question": "In which year did the First World War begin?",
+      "options": [
+        "1912",
+        "1914",
+        "1916",
+        "1918"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "h4",
+      "question": "In which year did the Second World War end?",
+      "options": [
+        "1939",
+        "1943",
+        "1945",
+        "1950"
+      ],
+      "correctAnswerIndex": 2
+    },
+    {
+      "id": "h5",
+      "question": "The Berlin Conference on Africa was held in…",
+      "options": [
+        "1884–1885",
+        "1900",
+        "1914",
+        "1960"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "id": "h6",
+      "question": "Which organisation was founded in 1945 to maintain international peace?",
+      "options": [
+        "League of Nations",
+        "United Nations",
+        "Organisation of African Unity",
+        "NATO"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "h7",
+      "question": "In which year was the Organisation of African Unity founded?",
+      "options": [
+        "1945",
+        "1963",
+        "1975",
+        "2002"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "h8",
+      "question": "Who led Nazi Germany during the Second World War?",
+      "options": [
+        "Kaiser Wilhelm II",
+        "Adolf Hitler",
+        "Otto von Bismarck",
+        "Franz Joseph"
+      ],
+      "correctAnswerIndex": 1
+    },
+    {
+      "id": "h9",
+      "question": "Under German rule, Cameroon was known as…",
+      "options": [
+        "Kamerun",
+        "Togoland",
+        "Deutsch-Ostafrika",
+        "Südwestafrika"
+      ],
+      "correctAnswerIndex": 0
+    },
+    {
+      "id": "h10",
+      "question": "The Industrial Revolution began in…",
+      "options": [
+        "France",
+        "Britain",
+        "the USA",
+        "Germany"
+      ],
+      "correctAnswerIndex": 1
+    }
+  ]
+}
