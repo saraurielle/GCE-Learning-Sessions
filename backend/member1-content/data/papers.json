@@ -1,0 +1,415 @@
+{
+  "mathematics": {
+    "2025": {
+      "1": [
+        [
+          "Question 1",
+          "Solve for x: 2x + 5 = 15",
+          "2x = 15 - 5 = 10, so x = 10 / 2 = 5."
+        ],
+        [
+          "Question 2",
+          "Simplify: 3(x + 4) - 2x",
+          "3x + 12 - 2x = x + 12."
+        ],
+        [
+          "Question 3",
+          "Find the area of a rectangle with length 8cm and width 5cm",
+          "Area = length × width = 8 × 5 = 40cm²."
+        ]
+      ],
+      "2": [
+        [
+          "Question 1",
+          "Factorise: x² - 9",
+          "This is a difference of squares: (x - 3)(x + 3)."
+        ],
+        [
+          "Question 2",
+          "Find the gradient of the line joining (2, 3) and (6, 11)",
+          "Gradient = (11 - 3) / (6 - 2) = 8 / 4 = 2."
+        ]
+      ]
+    },
+    "2024": {
+      "1": [
+        [
+          "Question 1",
+          "Convert 0.75 to a fraction in its simplest form",
+          "0.75 = 75/100 = 3/4."
+        ]
+      ]
+    }
+  },
+  "english": {
+    "2025": {
+      "1": [
+        [
+          "Question 1",
+          "Identify the tense: 'She has finished her homework.'",
+          "This is the present perfect tense (has + past participle)."
+        ],
+        [
+          "Question 2",
+          "Give a synonym for 'happy'",
+          "Possible answers: joyful, glad, cheerful."
+        ]
+      ],
+      "2": [
+        [
+          "Question 1",
+          "Identify the adjective: 'The tall boy kicked the ball.'",
+          "'tall' describes the noun 'boy'."
+        ],
+        [
+          "Question 2",
+          "Write the plural of 'child'.",
+          "The plural is 'children' (an irregular plural)."
+        ]
+      ]
+    },
+    "2024": {
+      "1": [
+        [
+          "Question 1",
+          "Give an antonym of 'brave'.",
+          "Possible answers: cowardly, fearful, timid."
+        ],
+        [
+          "Question 2",
+          "Correct the sentence: 'He go to school every day.'",
+          "'He goes to school every day.' A third-person singular subject takes 'goes'."
+        ]
+      ]
+    }
+  },
+  "physics": {
+    "2025": {
+      "1": [
+        [
+          "Question 1",
+          "State the SI unit of force.",
+          "The SI unit of force is the newton (N), where 1 N = 1 kg·m/s²."
+        ],
+        [
+          "Question 2",
+          "A car travels 120 km in 2 hours. Find its average speed.",
+          "Average speed = distance ÷ time = 120 ÷ 2 = 60 km/h."
+        ],
+        [
+          "Question 3",
+          "Calculate the weight of a 5 kg mass. (Take g = 10 m/s²)",
+          "Weight = mass × g = 5 × 10 = 50 N."
+        ]
+      ],
+      "2": [
+        [
+          "Question 1",
+          "State Ohm's law.",
+          "The current through a conductor is directly proportional to the potential difference across it, provided the temperature stays constant (V = IR)."
+        ],
+        [
+          "Question 2",
+          "Find the resistance of a component when V = 12 V and I = 3 A.",
+          "R = V ÷ I = 12 ÷ 3 = 4 Ω."
+        ]
+      ]
+    },
+    "2024": {
+      "1": [
+        [
+          "Question 1",
+          "Name the process by which heat travels through a vacuum.",
+          "Radiation. It needs no medium, which is how heat reaches us from the Sun."
+        ],
+        [
+          "Question 2",
+          "Find the frequency of a wave with a period of 0.02 s.",
+          "f = 1 ÷ T = 1 ÷ 0.02 = 50 Hz."
+        ]
+      ]
+    }
+  },
+  "chemistry": {
+    "2025": {
+      "1": [
+        [
+          "Question 1",
+          "Write the chemical formula of water.",
+          "H₂O: two hydrogen atoms bonded to one oxygen atom."
+        ],
+        [
+          "Question 2",
+          "What is the pH of a neutral solution at 25 °C?",
+          "pH 7."
+        ],
+        [
+          "Question 3",
+          "Balance: H₂ + O₂ → H₂O",
+          "2H₂ + O₂ → 2H₂O. There are 4 H and 2 O on each side."
+        ]
+      ],
+      "2": [
+        [
+          "Question 1",
+          "How many protons and neutrons are in a carbon-12 atom?",
+          "Carbon has atomic number 6, so 6 protons. Neutrons = 12 − 6 = 6."
+        ],
+        [
+          "Question 2",
+          "Name the gas produced when zinc reacts with dilute hydrochloric acid.",
+          "Hydrogen: Zn + 2HCl → ZnCl₂ + H₂."
+        ]
+      ]
+    },
+    "2024": {
+      "1": [
+        [
+          "Question 1",
+          "What type of bond forms between sodium and chlorine?",
+          "An ionic bond. Sodium transfers one electron to chlorine, forming Na⁺ and Cl⁻ ions."
+        ],
+        [
+          "Question 2",
+          "Define an element.",
+          "A pure substance made of only one type of atom (all with the same atomic number)."
+        ]
+      ]
+    }
+  },
+  "biology": {
+    "2025": {
+      "1": [
+        [
+          "Question 1",
+          "What is the function of the mitochondria?",
+          "Mitochondria are the site of aerobic respiration, releasing energy (as ATP) for the cell."
+        ],
+        [
+          "Question 2",
+          "Name the process by which green plants make their food.",
+          "Photosynthesis: carbon dioxide + water → glucose + oxygen, using light energy absorbed by chlorophyll."
+        ],
+        [
+          "Question 3",
+          "State the role of red blood cells.",
+          "They transport oxygen around the body, using the pigment haemoglobin."
+        ]
+      ],
+      "2": [
+        [
+          "Question 1",
+          "Define osmosis.",
+          "The movement of water molecules through a partially permeable membrane from a dilute solution to a more concentrated solution."
+        ],
+        [
+          "Question 2",
+          "Name the enzyme in saliva that begins the digestion of starch.",
+          "Salivary amylase, which breaks starch down into maltose."
+        ]
+      ]
+    },
+    "2024": {
+      "1": [
+        [
+          "Question 1",
+          "State one difference between mitosis and meiosis.",
+          "Mitosis makes two genetically identical diploid cells (growth and repair). Meiosis makes four genetically different haploid gametes."
+        ],
+        [
+          "Question 2",
+          "Name the part of the digestive system where most absorption of nutrients occurs.",
+          "The small intestine (ileum), whose villi give a large surface area."
+        ]
+      ]
+    }
+  },
+  "computer-science": {
+    "2025": {
+      "1": [
+        [
+          "Question 1",
+          "Convert the binary number 1011 to decimal.",
+          "1011₂ = 8 + 0 + 2 + 1 = 11."
+        ],
+        [
+          "Question 2",
+          "What does CPU stand for?",
+          "Central Processing Unit."
+        ],
+        [
+          "Question 3",
+          "Name two types of software.",
+          "System software (e.g. an operating system) and application software (e.g. a word processor)."
+        ]
+      ],
+      "2": [
+        [
+          "Question 1",
+          "What is an algorithm?",
+          "A finite, step-by-step set of instructions for solving a problem."
+        ],
+        [
+          "Question 2",
+          "State the output of: for i in range(3): print(i)",
+          "It prints 0, 1 and 2 on separate lines, because range(3) produces 0, 1, 2."
+        ]
+      ]
+    },
+    "2024": {
+      "1": [
+        [
+          "Question 1",
+          "Give one difference between RAM and ROM.",
+          "RAM is volatile, read/write memory for running programs. ROM is non-volatile and holds start-up instructions."
+        ],
+        [
+          "Question 2",
+          "What does HTML stand for?",
+          "HyperText Markup Language."
+        ]
+      ]
+    }
+  },
+  "economics": {
+    "2025": {
+      "1": [
+        [
+          "Question 1",
+          "Define scarcity.",
+          "Scarcity is the problem of limited resources set against unlimited human wants."
+        ],
+        [
+          "Question 2",
+          "State the law of demand.",
+          "As the price of a good rises, the quantity demanded falls, and vice versa, other things being equal (ceteris paribus)."
+        ],
+        [
+          "Question 3",
+          "Define opportunity cost.",
+          "The value of the next best alternative given up when a choice is made."
+        ]
+      ],
+      "2": [
+        [
+          "Question 1",
+          "Name two factors of production.",
+          "Any two of: land, labour, capital, enterprise."
+        ],
+        [
+          "Question 2",
+          "What is inflation?",
+          "A sustained rise in the general level of prices over time."
+        ]
+      ]
+    },
+    "2024": {
+      "1": [
+        [
+          "Question 1",
+          "State one cause of a shift in the supply curve.",
+          "Examples: a change in production costs, new technology, taxes or subsidies, or the number of firms."
+        ],
+        [
+          "Question 2",
+          "Define GDP.",
+          "Gross Domestic Product: the total value of goods and services produced within a country in a given period."
+        ]
+      ]
+    }
+  },
+  "geography": {
+    "2025": {
+      "1": [
+        [
+          "Question 1",
+          "Name the longest river in Africa.",
+          "The River Nile, at roughly 6,650 km."
+        ],
+        [
+          "Question 2",
+          "What is the latitude of the Equator?",
+          "0° (zero degrees)."
+        ],
+        [
+          "Question 3",
+          "Define a tributary.",
+          "A smaller river or stream that flows into a larger river."
+        ]
+      ],
+      "2": [
+        [
+          "Question 1",
+          "Name two types of rainfall.",
+          "Any two of: convectional, relief (orographic), frontal (cyclonic)."
+        ],
+        [
+          "Question 2",
+          "What is the capital city of Cameroon?",
+          "Yaoundé."
+        ]
+      ]
+    },
+    "2024": {
+      "1": [
+        [
+          "Question 1",
+          "Name the four main layers of the Earth.",
+          "The crust, the mantle, the outer core and the inner core."
+        ],
+        [
+          "Question 2",
+          "State two causes of deforestation.",
+          "Any two of: logging, clearing land for farming, urban expansion, fuelwood collection."
+        ]
+      ]
+    }
+  },
+  "history": {
+    "2025": {
+      "1": [
+        [
+          "Question 1",
+          "In which year did French Cameroun become independent?",
+          "1960."
+        ],
+        [
+          "Question 2",
+          "Who was the first president of independent Cameroon?",
+          "Ahmadou Ahidjo, who led the country from 1960 to 1982."
+        ],
+        [
+          "Question 3",
+          "What was the Berlin Conference of 1884–1885 about?",
+          "European powers agreed rules for colonising and trading in Africa, and divided up spheres of influence."
+        ]
+      ],
+      "2": [
+        [
+          "Question 1",
+          "State two causes of the First World War.",
+          "Any two of: alliances, militarism, imperialism, nationalism, and the assassination of Archduke Franz Ferdinand in 1914."
+        ],
+        [
+          "Question 2",
+          "In which year did the Second World War end?",
+          "1945."
+        ]
+      ]
+    },
+    "2024": {
+      "1": [
+        [
+          "Question 1",
+          "What was the trans-Atlantic slave trade?",
+          "The forced transport of enslaved Africans to the Americas between the 16th and 19th centuries."
+        ],
+        [
+          "Question 2",
+          "Which organisation replaced the League of Nations after the Second World War?",
+          "The United Nations, founded in 1945."
+        ]
+      ]
+    }
+  }
+}

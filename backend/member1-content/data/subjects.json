@@ -1,0 +1,11 @@
+[
+  { "id": "mathematics", "name": "Mathematics", "icon": "∑" },
+  { "id": "english", "name": "English Language", "icon": "A" },
+  { "id": "physics", "name": "Physics", "icon": "⚡" },
+  { "id": "chemistry", "name": "Chemistry", "icon": "⚗" },
+  { "id": "biology", "name": "Biology", "icon": "🧬" },
+  { "id": "computer-science", "name": "Computer Science", "icon": "💻" },
+  { "id": "economics", "name": "Economics", "icon": "📈" },
+  { "id": "geography", "name": "Geography", "icon": "🌍" },
+  { "id": "history", "name": "History", "icon": "📜" }
+]
