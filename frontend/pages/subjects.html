@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Subjects - GCE Learning Session</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/api.js"></script>
+  <style>
+.subject-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:25px}
+.subject{background:#fff;padding:25px;border-radius:12px;box-shadow:0 4px 15px #0001;text-decoration:none;color:#172033}
+.subject .icon{font-size:32px}
+.subject h3{margin:10px 0 5px;color:#2563eb}
+@media(max-width:800px){.subject-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.subject-grid{grid-template-columns:1fr}}
+.container{max-width:1200px}
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">GCE<span>Learning</span>Session</div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="login.html" id="authLink">Login</a>
+    </nav>
+  </header>
+<main class="container">
+  <p class="tag">CHOOSE A SUBJECT</p>
+  <h1>Start your learning journey</h1>
+  <p>Select one of the subjects below.</p>
+  <div id="subjects" class="subject-grid"><p>Loading…</p></div>
+</main>
+<script>
+const box = document.getElementById("subjects");
+api("/subjects")
+  .then((subjects) => {
+    box.innerHTML = subjects.map((s) =>
+      `<a class="subject" href="papers.html?subject=${encodeURIComponent(s.id)}"><div class="icon">${esc(s.icon)}</div><h3>${esc(s.name)}</h3><p>Years and papers</p></a>`
+    ).join("");
+  })
+  .catch((e) => showError(box, e.message));
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Learning - GCE Learning Session</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/api.js"></script>
+  <style>
+.question{background:#fff;padding:25px;margin:20px 0;border-radius:12px;box-shadow:0 3px 14px #0001}
+.solution{background:#eef5ff;padding:15px;margin-top:15px;border-radius:8px}
+summary{cursor:pointer;margin-top:10px;font-weight:600}
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">GCE<span>Learning</span>Session</div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="login.html" id="authLink">Login</a>
+    </nav>
+  </header>
+<main class="container">
+  <p class="tag">LEARNING MODE</p>
+  <h1 id="heading">Paper</h1>
+  <div id="content"><p>Loading…</p></div>
+  <a class="btn" id="quizLink" href="quiz.html">Finish Paper &amp; Start Quiz</a>
+</main>
+<script>
+const params = new URLSearchParams(location.search);
+const subject = params.get("subject") || "mathematics";
+const year = params.get("year") || "2025";
+const paper = params.get("paper") || "1";
+const content = document.getElementById("content");
+const heading = document.getElementById("heading");
+
+heading.textContent = `${subject} — ${year}, Paper ${paper}`;
+document.getElementById("quizLink").href = "quiz.html?subject=" + encodeURIComponent(subject);
+
+api("/subjects/" + encodeURIComponent(subject))
+  .then((s) => { heading.textContent = `${s.name} — ${year}, Paper ${paper}`; })
+  .catch(() => {});
+
+api(`/papers/${encodeURIComponent(subject)}/${encodeURIComponent(year)}/${encodeURIComponent(paper)}`)
+  .then((data) => {
+    content.innerHTML = data.questions.map((x) =>
+      `<article class="question"><h3>${esc(x[0])}</h3><p>${esc(x[1])}</p>` +
+      `<details><summary>Reveal explanation</summary><div class="solution">${esc(x[2])}</div></details></article>`
+    ).join("");
+  })
+  .catch((e) => showError(content, e.message));
+</script>
+</body>
+</html>

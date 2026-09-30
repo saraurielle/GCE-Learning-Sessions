@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Account - GCE Learning Session</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/api.js"></script>
+  <style>
+.panel{background:#fff;padding:25px;border-radius:12px;box-shadow:0 3px 14px #0001;margin:20px 0}
+.panel input{display:block;width:100%;padding:11px;margin:8px 0 14px;border:1px solid #cbd5e1;border-radius:7px;font:inherit}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:700px){.cols{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:8px;border-bottom:1px solid #e5e9f0}
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">GCE<span>Learning</span>Session</div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="login.html" id="authLink">Login</a>
+    </nav>
+  </header>
+<main class="container">
+  <p class="tag">ACCOUNT</p>
+  <h1>Your account</h1>
+  <div id="msg"></div>
+  <div id="app"></div>
+</main>
+<script>
+const app = document.getElementById("app");
+const msg = document.getElementById("msg");
+
+function render() {
+  msg.innerHTML = "";
+  const user = Auth.user();
+  if (user) return renderAccount(user);
+
+  app.innerHTML = `
+    <div class="cols">
+      <div class="panel"><h2>Log in</h2>
+        <label>Username<input id="lu" autocomplete="username"></label>
+        <label>Password<input id="lp" type="password" autocomplete="current-password"></label>
+        <button type="button" class="btn" id="loginBtn">Log in</button></div>
+      <div class="panel"><h2>Create account</h2>
+        <label>Username (min 3 characters)<input id="ru" autocomplete="username"></label>
+        <label>Password (min 6 characters)<input id="rp" type="password" autocomplete="new-password"></label>
+        <button type="button" class="btn" id="registerBtn">Register</button></div>
+    </div>`;
+  document.getElementById("loginBtn").onclick = () =>
+    doLogin(document.getElementById("lu").value, document.getElementById("lp").value);
+  document.getElementById("registerBtn").onclick = async () => {
+    const username = document.getElementById("ru").value;
+    const password = document.getElementById("rp").value;
+    try {
+      await api("/auth/register", { method: "POST", body: { username, password } });
+      await doLogin(username, password);
+    } catch (e) { showError(msg, e.message); }
+  };
+}
+
+async function doLogin(username, password) {
+  try {
+    const data = await api("/auth/login", { method: "POST", body: { username, password } });
+    Auth.set({ token: data.token, user: data.user });
+    document.getElementById("authLink").textContent = data.user.username;
+    render();
+  } catch (e) { showError(msg, e.message); }
+}
+
+async function renderAccount(user) {
+  app.innerHTML = `<div class="panel"><h2>Hello, ${esc(user.username)}</h2>
+    <p>Your quiz scores are saved to this account.</p>
+    <p><button type="button" class="btn" id="logoutBtn">Log out</button></p></div>
+    <div class="panel"><h2>Your recent scores</h2><div id="scores">Loading…</div></div>`;
+  document.getElementById("logoutBtn").onclick = () => {
+    Auth.clear();
+    document.getElementById("authLink").textContent = "Login";
+    render();
+  };
+  const box = document.getElementById("scores");
+  try {
+    const scores = await api("/scores/" + encodeURIComponent(user.id));
+    box.innerHTML = scores.length
+      ? "<table><tr><th>Subject</th><th>Score</th><th>%</th><th>Date</th></tr>" +
+        scores.map((s) => `<tr><td>${esc(s.subjectId)}</td><td>${s.correctCount}/${s.total}</td><td>${s.percentage}%</td><td>${esc(new Date(s.dateTaken).toLocaleString())}</td></tr>`).join("") +
+        "</table>"
+      : "<p>No quizzes taken yet.</p>";
+  } catch (e) {
+    if (/token|Authorization/i.test(e.message)) { Auth.clear(); render(); }
+    else showError(box, e.message);
+  }
+}
+
+render();
+</script>
+</body>
+</html>

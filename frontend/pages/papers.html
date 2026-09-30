@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Papers - GCE Learning Session</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/api.js"></script>
+  <style>
+.paper{background:#fff;padding:22px;margin:15px 0;border-radius:10px;box-shadow:0 3px 12px #0001;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.paper a{background:#2563eb;color:white;padding:9px 15px;border-radius:7px;text-decoration:none}
+.actions{margin-top:25px}
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">GCE<span>Learning</span>Session</div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="subjects.html">Subjects</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="login.html" id="authLink">Login</a>
+    </nav>
+  </header>
+<main class="container">
+  <p class="tag">PAST PAPERS</p>
+  <h1 id="title">Subject</h1>
+  <p>Choose a sample year and paper for revision.</p>
+  <div id="papers"><p>Loading…</p></div>
+  <div class="actions" id="actions"></div>
+</main>
+<script>
+const id = new URLSearchParams(location.search).get("subject") || "mathematics";
+const box = document.getElementById("papers");
+
+api("/subjects/" + encodeURIComponent(id))
+  .then((s) => { document.getElementById("title").textContent = s.name; })
+  .catch(() => {});
+
+api("/papers/" + encodeURIComponent(id))
+  .then((list) => {
+    list.sort((a, b) => b.year - a.year || a.paper - b.paper);
+    box.innerHTML = list.map((p) =>
+      `<div class="paper"><div><h3>${p.year} - Paper ${p.paper}</h3><p>Study the sample paper questions.</p></div>` +
+      `<a href="learning.html?subject=${encodeURIComponent(id)}&year=${p.year}&paper=${p.paper}">Study</a></div>`
+    ).join("");
+    document.getElementById("actions").innerHTML =
+      `<a class="btn" href="quiz.html?subject=${encodeURIComponent(id)}">Take the ${esc(id)} quiz</a>`;
+  })
+  .catch((e) => showError(box, e.message));
+</script>
+</body>
+</html>
