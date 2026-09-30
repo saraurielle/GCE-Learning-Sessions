@@ -1,105 +1,67 @@
-# GCE Learning Session — Backend
+# GCE Student Learning Platform - Backend
 
-Node.js + Express backend for the GCE Learning Session platform, split into
-three folders so each of the three backend team members can work
-independently with minimal merge conflicts. A fourth teammate owns the
-frontend (the existing `index.html`, `pages/*.html`, `css/`, `js/` files).
+Node.js + Express API. It also serves the frontend (the `../frontend` folder), so one command runs everything.
 
 ## Folder structure
 
 ```
-gce-backend/
-├── package.json              <- shared dependencies, run from here
-├── .env.example               <- copy to .env and fill in
-├── member1-content/           <- Subjects & Papers
-├── member2-quiz-scoring/      <- Quiz Engine & Scoring
-└── member3-infra-users/       <- Server, Auth, Integration (entry point lives here)
+backend/
+├── server.js          entry point: middleware, routes, static frontend, error handler
+├── package.json       dependencies and scripts
+├── .env.example       copy to .env and fill in
+├── config/db.js       central list of the data file paths (swap here for a real database)
+├── middleware/        auth.js (JWT), errorHandler.js
+├── routes/            auth, subjects, papers, quiz, scores, chat
+├── controllers/       the logic behind each route
+├── models/            data shape reference classes
+├── services/          QuizGrader.js (grading), ChatHub.js (live chat updates)
+├── data/              JSON files used as the database
+└── test/              chat.test.js  (run with: npm test)
 ```
 
-Each member folder has its own `README.md` explaining their endpoints,
-files, and what to build next.
-
-| Member | Module | Endpoints they own |
-|--------|--------|----------------------|
-| 1 | Content (Subjects & Papers) | `/api/subjects`, `/api/papers/*` |
-| 2 | Quiz Engine & Scoring | `/api/quiz/*`, `/api/scores/*` |
-| 3 | Infrastructure, Users & Integration | `/api/auth/*`, plus `server.js` which mounts everything |
-
-## How to run it
+## Run it
 
 ```bash
 npm install
-cp .env.example .env
-npm start
+cp .env.example .env     # set JWT_SECRET to a long random string
+npm start                # http://localhost:3000
 ```
+`npm run dev` restarts automatically while you edit. Check it works: `curl http://localhost:3000/api/health`
 
-The server starts on `http://localhost:3000` by default. Try:
-```bash
-curl http://localhost:3000/api/health
-curl http://localhost:3000/api/subjects
-```
+The frontend lives in `../frontend`; backend and frontend folders must sit side by side.
+You can also open the frontend from another dev server (Live Server on :5500); `js/api.js` then calls the API on `http://localhost:3000`.
 
-For auto-restart while developing:
-```bash
-npm run dev
-```
+## Endpoints
 
-## Connecting the frontend
+| Method | Route | Access | Purpose |
+|--------|-------|--------|---------|
+| GET | `/api/health` | public | Server check |
+| GET | `/api/subjects`, `/api/subjects/:id` | public | The 9 subjects |
+| GET | `/api/papers/:subjectId` | public | Years and papers available for a subject |
+| GET | `/api/papers/:subjectId/:year/:paper` | public | Questions of one paper |
+| GET | `/api/quiz/:subjectId` | public | Quiz questions (answers hidden) |
+| POST | `/api/quiz/submit` | guest or login | `{ subjectId, answers: [0,2,null,...] }` -> graded on the server; saved under the logged-in user, or `guest` |
+| POST | `/api/auth/register`, `/api/auth/login` | public | Create account, get a JWT (7 days) |
+| GET | `/api/auth/me` | login | Current user |
+| GET | `/api/scores/:userId` | login (own only) | Your quiz history |
+| POST | `/api/scores` | login | Save a score directly |
+| GET | `/api/chat/rooms` | public | General + one room per subject |
+| GET | `/api/chat/:room/messages` | public | Recent messages (`?limit=50&before=<ISO date>`) |
+| GET | `/api/chat/:room/stream` | public | Live updates (Server-Sent Events: `chat`, `delete`, `presence`) |
+| POST | `/api/chat/:room/messages` | login | `{ text }`, max 500 characters, 5 messages per 10 s |
+| DELETE | `/api/chat/:room/messages/:id` | login (owner) | Delete your own message |
 
-The frontend now lives in `../frontend` and is already wired to this API
-(`frontend/js/api.js` holds the shared `fetch` helper). `server.js` also
-serves it, so one command runs everything:
+## Good to know
 
-```bash
-npm install
-npm start
-# open http://localhost:3000
-```
+- **Grading is server-side.** `quiz.json` holds the answer key; `GET /api/quiz/:subjectId` strips it, so nobody can read answers from the network.
+- **Data shapes:** `papers.json` is `{ subjectId: { year: { paperNumber: [ [title, prompt, explanation], ... ] } } }`; `quiz.json` questions are `{ id, question, options (4), correctAnswerIndex }`. Add content by extending the JSON; no code changes needed.
+- **Storage** is JSON files under `data/` (users, scores and chat messages are written there; each chat room keeps its latest 500 messages). Move to SQLite/MongoDB/Postgres by starting in `config/db.js`.
+- **Chat live updates** and the chat rate limiter live in one Node process. Running several instances would need something shared (e.g. Redis).
+- The questions are sample content. Replace them with GCE material you are allowed to use.
+- Not built yet: chat moderation (report, admin delete, word filter).
 
-You can also open the frontend from a separate dev server (Live Server on
-`:5500`, `npx serve`) or straight from `index.html`; `api.js` then calls the
-backend at `http://localhost:3000` (CORS is enabled).
-
-| Page | API calls |
-|------|-----------|
-| `subjects.html` | `GET /api/subjects` |
-| `papers.html` | `GET /api/subjects/:id`, `GET /api/papers/:subjectId` |
-| `learning.html` | `GET /api/papers/:subjectId/:year/:paper` |
-| `quiz.html` | `GET /api/quiz/:subjectId`, `POST /api/quiz/submit` |
-| `login.html` | `POST /api/auth/register`, `POST /api/auth/login`, `GET /api/scores/:userId` |
-
-## Testing endpoints without a frontend
-
-Use `curl`, Postman, or Thunder Client (VS Code extension):
+## Tests
 
 ```bash
-curl http://localhost:3000/api/subjects
-curl http://localhost:3000/api/papers/mathematics
-curl http://localhost:3000/api/papers/mathematics/2025/1
-curl http://localhost:3000/api/quiz/mathematics
-curl -X POST http://localhost:3000/api/quiz/submit \
-  -H "Content-Type: application/json" \
-  -d '{"subjectId":"mathematics","answers":[1,2,1,2,1,1,2,2,1,1]}'
-curl -X POST http://localhost:3000/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{"username":"leprince","password":"secret123"}'
-curl -X POST http://localhost:3000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username":"leprince","password":"secret123"}'
+npm test     # community chat checks, no server needed
 ```
-
-## Storage
-
-All three modules currently store data in flat JSON files under each
-folder's `data/`. This is intentional — it lets everyone build and test
-without setting up a database first. `member3-infra-users/config/db.js` is
-the single place to swap this for SQLite, MongoDB, or Postgres later
-without changing how the controllers are called from the routes.
-
-## Access rules
-
-- `POST /api/quiz/submit` works for guests (saved as `guest`). With a valid
-  `Authorization: Bearer <token>` the score is saved under that user. A
-  `userId` in the body is ignored.
-- `GET /api/scores/:userId` and `POST /api/scores` require login, and users can
-  only read/write their own scores.
