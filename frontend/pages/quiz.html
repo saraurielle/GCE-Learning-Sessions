@@ -1,110 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Quiz - GCE Learning Session</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="../js/api.js"></script>
-  <style>
-.q{background:#fff;padding:22px;margin:18px 0;border-radius:12px;box-shadow:0 3px 14px #0001}
-.option{display:block;padding:10px;margin:8px 0;background:#f1f4f8;border-radius:7px;cursor:pointer}
-.submit{margin-top:10px}
-.result{margin-top:20px;padding:20px;background:#eaf7ee;border-radius:10px}
-.result.fail{background:#fff4e5}
-.picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:15px;margin-top:20px}
-.picker a{background:#fff;padding:18px;border-radius:10px;box-shadow:0 3px 12px #0001;text-decoration:none;color:#172033;font-weight:600}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quizzes · GCE Learning</title>
+<meta name="description" content="Timed multiple choice quizzes marked instantly.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Caveat:wght@700&amp;family=Figtree:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/api.js"></script>
 </head>
-<body>
-  <header class="navbar">
-    <div class="logo">GCE<span>Learning</span>Session</div>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="subjects.html">Subjects</a>
-      <a href="quiz.html">Quiz</a>
-      <a href="login.html" id="authLink">Login</a>
-    </nav>
-  </header>
-<main class="container">
-  <p class="tag">QUIZ GAME</p>
-  <h1 id="title">Test what you learned</h1>
-  <div id="app"><p>Loading…</p></div>
-</main>
-<script>
-const subjectId = new URLSearchParams(location.search).get("subject");
-const app = document.getElementById("app");
-
-if (!subjectId) showPicker(); else loadQuiz();
-
-function showPicker() {
-  api("/subjects")
-    .then((subjects) => {
-      app.innerHTML = "<p>Choose a subject to be quizzed on:</p><div class=\"picker\">" +
-        subjects.map((s) => `<a href="quiz.html?subject=${encodeURIComponent(s.id)}">${esc(s.icon)} ${esc(s.name)}</a>`).join("") +
-        "</div>";
-    })
-    .catch((e) => showError(app, e.message));
-}
-
-let questions = [];
-
-function loadQuiz() {
-  api("/subjects/" + encodeURIComponent(subjectId))
-    .then((s) => { document.getElementById("title").textContent = s.name + " Quiz"; })
-    .catch(() => {});
-
-  api("/quiz/" + encodeURIComponent(subjectId))
-    .then((data) => {
-      questions = data;
-      app.innerHTML =
-        `<p>Answer all ${questions.length} questions, then submit to see your score.</p>` +
-        `<div id="quiz">` +
-        questions.map((item, i) =>
-          `<div class="q"><h3>${i + 1}. ${esc(item.question)}</h3>` +
-          item.options.map((o, j) =>
-            `<label class="option"><input type="radio" name="q${i}" value="${j}"> ${esc(o)}</label>`
-          ).join("") + `</div>`
-        ).join("") +
-        `</div><button type="button" class="btn submit" id="submitBtn">Submit Quiz</button>` +
-        `<div id="result"></div>`;
-      document.getElementById("submitBtn").addEventListener("click", submitQuiz);
-    })
-    .catch((e) => showError(app, e.message));
-}
-
-async function submitQuiz() {
-  const answers = questions.map((_, i) => {
-    const sel = document.querySelector(`input[name="q${i}"]:checked`);
-    return sel ? Number(sel.value) : null;
-  });
-  const unanswered = answers.filter((a) => a === null).length;
-  if (unanswered > 0 && !confirm(`${unanswered} question(s) unanswered. Submit anyway? They will count as wrong.`)) return;
-
-  const btn = document.getElementById("submitBtn");
-  const result = document.getElementById("result");
-  btn.disabled = true;
-  try {
-    const r = await api("/quiz/submit", { method: "POST", body: { subjectId, answers } });
-    const status = r.passed ? "PASSED" : "KEEP PRACTISING";
-    const saved = Auth.user()
-      ? "Your score was saved to your account."
-      : `<a href="login.html">Log in</a> to keep your scores in your account history.`;
-    result.className = "result" + (r.passed ? "" : " fail");
-    result.innerHTML =
-      `<h2>Your Result</h2>` +
-      `<p>Correct answers: <strong>${r.correct}/${r.total}</strong></p>` +
-      `<p>Percentage: <strong>${r.percentage}%</strong></p>` +
-      `<p>Result: <strong>${status}</strong></p>` +
-      `<p>${saved}</p>` +
-      `<p><a class="btn" href="quiz.html?subject=${encodeURIComponent(subjectId)}">Try again</a></p>`;
-    result.scrollIntoView({ behavior: "smooth" });
-  } catch (e) {
-    showError(result, e.message);
-  } finally {
-    btn.disabled = false;
-  }
-}
-</script>
+<body data-nav="quiz">
+<main class="container" id="view"><span class="skeleton row"></span><span class="skeleton row"></span><span class="skeleton row"></span></main>
+<script src="../js/shell.js"></script><script src="../js/quiz-ui.js"></script><script src="../js/pages/quiz.js"></script>
 </body>
 </html>

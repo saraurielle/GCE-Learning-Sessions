@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Notifications · GCE Learning</title>
+<meta name="description" content="All your notifications.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Caveat:wght@700&amp;family=Figtree:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/api.js"></script>
+</head>
+<body data-nav="">
+<main class="container"><div class="page-head"><div><h1>Notifications</h1><p>Badges, replies, mentions and reminders.</p></div><div class="flex wrap"><div class="tabs" role="tablist" aria-label="Filter"><button type="button" role="tab" data-filter="all" aria-selected="true">All</button><button type="button" role="tab" data-filter="unread" aria-selected="false">Unread</button></div><button type="button" class="btn outline sm" id="readAll">Mark all as read</button><button type="button" class="btn danger sm" id="clearAll">Clear all</button></div></div><div id="view"><span class="skeleton row"></span><span class="skeleton row"></span><span class="skeleton row"></span></div><div id="admin"></div></main>
+<script src="../js/shell.js"></script><script src="../js/pages/notifications.js"></script>
+</body>
+</html>
