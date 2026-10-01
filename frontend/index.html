@@ -1,38 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GCE Learning Session - Home</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/api.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home · GCE Learning</title>
+<meta name="description" content="Past papers, quizzes, daily challenges and a study community for GCE students.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Caveat:wght@700&amp;family=Figtree:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/api.js"></script>
 </head>
-<body>
-<header class="navbar">
-  <div class="logo">GCE<span>Learning</span>Session</div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="pages/subjects.html">Subjects</a>
-    <a href="pages/quiz.html">Quiz</a>
-    <a href="pages/login.html" id="authLink">Login</a>
-  </nav>
-</header>
-
-<main class="hero">
-  <section>
-    <p class="tag">GCE STUDENT LEARNING PLATFORM</p>
-    <h1><span>Learn</span> . <span> Practice </span> . <span>Test Yourself</span></h1>
-    <p>Study past-paper questions, complete quizzes and see your score instantly.</p>
-    <a class="btn" href="pages/subjects.html">Start Learning</a>
-  </section>
-</main>
-
-<section class="features">
-  <div class="card"><h3>9 Subjects</h3><p>Choose a subject and focus on what you want to study.</p></div>
-  <div class="card"><h3>Past Papers</h3><p>Study questions paper by paper and year by year.</p></div>
-  <div class="card"><h3>Quiz &amp; Score</h3><p>Test your knowledge and receive an automatic result.</p></div>
-</section>
-
-<footer>© 2026 GCE Learn - Student GCE Session</footer>
+<body data-nav="home">
+<main class="container" id="home"><span class="skeleton row"></span></main>
+<script src="js/shell.js"></script><script src="js/pages/home.js"></script>
 </body>
 </html>
