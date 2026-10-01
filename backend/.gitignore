@@ -1,3 +1,12 @@
-node_modules/
+node_modules
 .env
-*.log
+data/users.json
+data/scores.json
+data/messages.json
+data/notifications.json
+data/study.json
+*.corrupt-*
+
+# deploy
+backups/
+.deploy.env

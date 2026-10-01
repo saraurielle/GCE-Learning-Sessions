@@ -1,67 +1,78 @@
-# GCE Student Learning Platform - Backend
+# GCE Learning Session: backend (v2)
 
-Node.js + Express API. It also serves the frontend (the `../frontend` folder), so one command runs everything.
-
-## Folder structure
-
-```
-backend/
-├── server.js          entry point: middleware, routes, static frontend, error handler
-├── package.json       dependencies and scripts
-├── .env.example       copy to .env and fill in
-├── config/db.js       central list of the data file paths (swap here for a real database)
-├── middleware/        auth.js (JWT), errorHandler.js
-├── routes/            auth, subjects, papers, quiz, scores, chat
-├── controllers/       the logic behind each route
-├── models/            data shape reference classes
-├── services/          QuizGrader.js (grading), ChatHub.js (live chat updates)
-├── data/              JSON files used as the database
-└── test/              chat.test.js  (run with: npm test)
-```
+Express API with JSON-file storage. It also serves the frontend, so one command runs the whole site.
 
 ## Run it
 
 ```bash
+cd backend
 npm install
-cp .env.example .env     # set JWT_SECRET to a long random string
-npm start                # http://localhost:3000
+cp .env.example .env        # then edit JWT_SECRET (and ADMIN_USERNAMES)
+npm start                   # http://localhost:3000
+npm test                    # 13 chat + 7 gamification + 21 end-to-end API tests
 ```
-`npm run dev` restarts automatically while you edit. Check it works: `curl http://localhost:3000/api/health`
 
-The frontend lives in `../frontend`; backend and frontend folders must sit side by side.
-You can also open the frontend from another dev server (Live Server on :5500); `js/api.js` then calls the API on `http://localhost:3000`.
+## Admins
 
-## Endpoints
+Register your account normally, put the username in `ADMIN_USERNAMES` (comma separated) in `.env`, restart.
+Admins can send announcements to everyone (Notifications page) and delete any chat message.
 
-| Method | Route | Access | Purpose |
-|--------|-------|--------|---------|
-| GET | `/api/health` | public | Server check |
-| GET | `/api/subjects`, `/api/subjects/:id` | public | The 9 subjects |
-| GET | `/api/papers/:subjectId` | public | Years and papers available for a subject |
-| GET | `/api/papers/:subjectId/:year/:paper` | public | Questions of one paper |
-| GET | `/api/quiz/:subjectId` | public | Quiz questions (answers hidden) |
-| POST | `/api/quiz/submit` | guest or login | `{ subjectId, answers: [0,2,null,...] }` -> graded on the server; saved under the logged-in user, or `guest` |
-| POST | `/api/auth/register`, `/api/auth/login` | public | Create account, get a JWT (7 days) |
-| GET | `/api/auth/me` | login | Current user |
-| GET | `/api/scores/:userId` | login (own only) | Your quiz history |
-| POST | `/api/scores` | login | Save a score directly |
-| GET | `/api/chat/rooms` | public | General + one room per subject |
-| GET | `/api/chat/:room/messages` | public | Recent messages (`?limit=50&before=<ISO date>`) |
-| GET | `/api/chat/:room/stream` | public | Live updates (Server-Sent Events: `chat`, `delete`, `presence`) |
-| POST | `/api/chat/:room/messages` | login | `{ text }`, max 500 characters, 5 messages per 10 s |
-| DELETE | `/api/chat/:room/messages/:id` | login (owner) | Delete your own message |
+## What is new in v2
 
-## Good to know
+| Area | What it does |
+| --- | --- |
+| Notifications | In-app list plus live push (SSE). Types: welcome, badge, level, streak, mention, reply, announcement, reminder |
+| Chat | Replies, reactions, edit/delete, @mentions, typing indicator, online counts, load earlier messages |
+| XP, levels, badges, streaks | Earned on quizzes, daily challenge and studied papers. 10 badges |
+| Daily challenge | 5 questions, the same for everyone each UTC day, one XP-earning attempt |
+| Leaderboard | This week or all time |
+| Saved questions | Bookmark past-paper questions; mark a paper as studied |
+| Search | Past-paper questions and subjects |
+| Profile | Avatar, bio, daily goal, notification preferences, change password |
+| Security | Server-side grading, rate limits, security headers, atomic file writes, production JWT secret check |
 
-- **Grading is server-side.** `quiz.json` holds the answer key; `GET /api/quiz/:subjectId` strips it, so nobody can read answers from the network.
-- **Data shapes:** `papers.json` is `{ subjectId: { year: { paperNumber: [ [title, prompt, explanation], ... ] } } }`; `quiz.json` questions are `{ id, question, options (4), correctAnswerIndex }`. Add content by extending the JSON; no code changes needed.
-- **Storage** is JSON files under `data/` (users, scores and chat messages are written there; each chat room keeps its latest 500 messages). Move to SQLite/MongoDB/Postgres by starting in `config/db.js`.
-- **Chat live updates** and the chat rate limiter live in one Node process. Running several instances would need something shared (e.g. Redis).
-- The questions are sample content. Replace them with GCE material you are allowed to use.
-- Not built yet: chat moderation (report, admin delete, word filter).
+### Rules
 
-## Tests
+- XP: 10 per correct answer, +20 for a pass (50% or more), +30 for a perfect score, +25 daily-challenge bonus, +15 first time a paper is marked studied.
+- Only the first 3 quiz attempts per subject per UTC day earn XP.
+- Level `n` needs `50 * (n-1)^2` XP in total.
+- Streaks count UTC days. A reminder is sent once a day after `REMINDER_HOUR_UTC` (default 16) to people whose streak is at risk.
 
-```bash
-npm test     # community chat checks, no server needed
-```
+## API overview
+
+All routes are under `/api`. `Bearer <token>` is the JWT from `/auth/login`.
+
+| Route | Auth | Notes |
+| --- | --- | --- |
+| `POST /auth/register`, `POST /auth/login`, `GET /auth/me`, `POST /auth/password` | | usernames: 3-20 chars of `A-Z a-z 0-9 _ . -` |
+| `GET /subjects`, `GET /subjects/:id` | | includes `paperCount`, `questionCount` |
+| `GET /papers/:subject`, `GET /papers/:subject/:year/:paper` | | |
+| `GET /quiz/:subject`, `POST /quiz/submit` | optional | guests are graded but nothing is stored; response includes a review |
+| `GET /daily`, `POST /daily/submit` | optional | |
+| `GET /scores/:userId` | required | own scores only. **`POST /scores` was removed** (it allowed faked scores) |
+| `GET /study`, `POST /study/bookmarks`, `DELETE /study/bookmarks/:id`, `POST /study/completed` | required | |
+| `GET /stats/me`, `GET /leaderboard?period=week\|all` | required / optional | |
+| `GET /profile`, `PATCH /profile` | required | |
+| `GET /search?q=` | | |
+| `GET /notifications`, `POST /notifications/:id/read`, `POST /notifications/read-all`, `DELETE /notifications[/:id]` | required | |
+| `GET /notifications/stream?token=` | token in query | SSE: `ready`, `notification` |
+| `POST /notifications/announce` | admin | `{ title, body?, link? }` |
+| `GET /chat/rooms`, `GET /chat/:room/messages`, `GET /chat/:room/stream` | | public read; SSE: `chat edit delete reaction typing presence` |
+| `POST /chat/:room/messages`, `PATCH/DELETE /chat/:room/messages/:id`, `POST .../reactions`, `POST /chat/:room/typing` | required | |
+
+## Behaviour changes from v1
+
+- Guest quiz scores are no longer stored (guests can still play).
+- `POST /api/scores` is gone; scores are created only by the server when it grades a quiz.
+- Usernames are limited to 3-20 letters, numbers and `_ . -`.
+
+## Configuration
+
+See `.env.example`: `PORT`, `JWT_SECRET`, `ADMIN_USERNAMES`, `NODE_ENV`, `CORS_ORIGIN`, `REMINDER_HOUR_UTC`, `GCE_DATA_DIR`, `API_RATE_LIMIT`.
+In production (`NODE_ENV=production`) the server refuses to start without a real `JWT_SECRET`.
+
+## Limitations
+
+- Live connections (SSE) and rate limiters live in one Node process. To run several instances, move them to Redis or similar.
+- Data is stored in JSON files (`data/*.json`). This is fine for a class or a small community; move to a database for large traffic.
+- Streaks and daily challenges use UTC days.
