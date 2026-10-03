@@ -16,9 +16,10 @@ function getPapersList(req, res) {
   }
 
   const list = Object.entries(subjectPapers).flatMap(([year, paperNumbers]) =>
-    Object.keys(paperNumbers).map((paperNumber) => ({
+    Object.entries(paperNumbers).map(([paperNumber, questions]) => ({
       year: Number(year),
       paper: Number(paperNumber),
+      questions: questions.length,
     }))
   );
 

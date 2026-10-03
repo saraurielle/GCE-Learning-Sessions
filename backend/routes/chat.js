@@ -1,21 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const chatController = require("../controllers/chatController");
+const chat = require("../controllers/chatController");
 const { requireAuth } = require("../middleware/auth");
 
-// GET /api/chat/rooms
-router.get("/rooms", chatController.getRooms);
-
-// GET /api/chat/:room/messages   (public read)
-router.get("/:room/messages", chatController.getMessages);
-
-// GET /api/chat/:room/stream     (public live updates, Server-Sent Events)
-router.get("/:room/stream", chatController.stream);
-
-// POST /api/chat/:room/messages  (login required)
-router.post("/:room/messages", requireAuth, chatController.postMessage);
-
-// DELETE /api/chat/:room/messages/:messageId  (login required, own messages only)
-router.delete("/:room/messages/:messageId", requireAuth, chatController.deleteMessage);
+router.get("/rooms", chat.getRooms);
+router.get("/:room/messages", chat.getMessages);                       // public read
+router.get("/:room/stream", chat.stream);                              // public live updates (SSE)
+router.post("/:room/messages", requireAuth, chat.postMessage);
+router.patch("/:room/messages/:messageId", requireAuth, chat.editMessage);
+router.delete("/:room/messages/:messageId", requireAuth, chat.deleteMessage);
+router.post("/:room/messages/:messageId/reactions", requireAuth, chat.react);
+router.post("/:room/typing", requireAuth, chat.typing);
 
 module.exports = router;

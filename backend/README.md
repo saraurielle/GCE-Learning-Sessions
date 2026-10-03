@@ -9,7 +9,7 @@ cd backend
 npm install
 cp .env.example .env        # then edit JWT_SECRET (and ADMIN_USERNAMES)
 npm start                   # http://localhost:3000
-npm test                    # 13 chat + 7 gamification + 21 end-to-end API tests
+npm test                    # chat + gamification tests
 ```
 
 ## Admins

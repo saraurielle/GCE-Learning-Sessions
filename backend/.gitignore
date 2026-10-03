@@ -10,3 +10,4 @@ data/study.json
 # deploy
 backups/
 .deploy.env
+data/progress.json

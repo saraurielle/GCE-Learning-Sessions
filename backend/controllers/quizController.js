@@ -1,65 +1,47 @@
 const quizBank = require("../data/quiz.json");
 const QuizGrader = require("../services/QuizGrader");
+const Scores = require("../services/Scores");
+const Progress = require("../services/Progress");
 const { saveScoreInternal } = require("./scoresController");
 
 const has = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
+const XP_ATTEMPTS_PER_DAY = 3; // only the first 3 attempts per subject per UTC day earn XP
 
-/**
- * GET /api/quiz/:subjectId
- * Returns quiz questions WITHOUT correct answers, so the frontend can't
- * read them out of the network response before submitting.
- */
+/** GET /api/quiz/:subjectId  (questions WITHOUT the correct answers) */
 function getQuiz(req, res) {
-  const { subjectId } = req.params;
-  const questions = has(quizBank, subjectId) ? quizBank[subjectId] : null;
-
-  if (!questions) {
-    return res.status(404).json({ error: "No quiz found for this subject" });
-  }
-
+  const questions = has(quizBank, req.params.subjectId) ? quizBank[req.params.subjectId] : null;
+  if (!questions) return res.status(404).json({ error: "No quiz found for this subject" });
   res.json(QuizGrader.stripAnswers(questions));
 }
 
 /**
- * POST /api/quiz/submit
- * Body: { subjectId, answers: [0,2,null,...] }  (null = unanswered)
- * Grades server-side (so the frontend can't fake a score) and saves the result.
- * The score is saved under the logged-in user (JWT), or "guest" if not logged in.
- * A userId in the body is ignored so nobody can save scores under someone else.
+ * POST /api/quiz/submit   { subjectId, answers: [0,2,null,...] }
+ * Graded on the server. Logged-in users get XP and a saved score; guests only get the marking.
  */
 function submitQuiz(req, res) {
-  const { subjectId, answers } = req.body;
-  const questions = has(quizBank, String(subjectId)) ? quizBank[subjectId] : null;
+  const subjectId = String(req.body.subjectId);
+  const questions = has(quizBank, subjectId) ? quizBank[subjectId] : null;
+  if (!questions) return res.status(404).json({ error: "No quiz found for this subject" });
 
-  if (!questions) {
-    return res.status(404).json({ error: "No quiz found for this subject" });
-  }
-  if (!Array.isArray(answers) || answers.length !== questions.length) {
-    return res.status(400).json({
-      error: `answers must be an array of length ${questions.length}`,
-    });
-  }
-
-  const validAnswer = (a) => a === null || (Number.isInteger(a) && a >= 0);
-  if (!answers.every(validAnswer)) {
-    return res.status(400).json({ error: "each answer must be an option index or null" });
-  }
+  const { answers } = req.body;
+  const problem = QuizGrader.validateAnswers(answers, questions);
+  if (problem) return res.status(400).json({ error: problem });
 
   const { correct, total } = QuizGrader.grade(answers, questions);
-  const saved = saveScoreInternal({
-    userId: req.user ? req.user.id : "guest",
-    subjectId,
-    correctCount: correct,
-    total,
-  });
+  const percentage = Math.round((correct / total) * 10000) / 100;
+  const out = { correct, total, percentage, passed: percentage >= 50, review: QuizGrader.review(answers, questions) };
 
-  res.json({
-    correct,
-    total,
-    percentage: saved.percentage,
-    passed: saved.percentage >= 50,
-    scoreId: saved.id,
-  });
+  if (!req.user) return res.json(out); // guest: nothing is stored
+
+  const today = Progress.dayKey();
+  const attemptsToday = Scores.forUser(req.user.id).filter(
+    (s) => (s.kind || "quiz") === "quiz" && s.subjectId === subjectId && String(s.dateTaken).startsWith(today)
+  ).length;
+  const xpGained = attemptsToday < XP_ATTEMPTS_PER_DAY ? QuizGrader.xpFor(correct, total) : 0;
+
+  const saved = saveScoreInternal({ userId: req.user.id, subjectId, correctCount: correct, total, kind: "quiz", xp: xpGained });
+  const progress = Progress.record(req.user.id, { xp: xpGained, perfect: correct === total });
+  res.json({ ...out, scoreId: saved.id, xpGained, progress });
 }
 
 module.exports = { getQuiz, submitQuiz };

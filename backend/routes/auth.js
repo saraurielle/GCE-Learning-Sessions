@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
 const { requireAuth } = require("../middleware/auth");
+const { limitMiddleware } = require("../services/RateLimiter");
 
-// POST /api/auth/register
-router.post("/register", authController.register);
+// Slow down password guessing (per IP). Generous: a classroom may share one IP.
+const guard = limitMiddleware({ windowMs: 15 * 60 * 1000, max: 200, key: (req) => req.ip, message: "Too many attempts. Try again in a few minutes." });
 
-// POST /api/auth/login
-router.post("/login", authController.login);
-
-// GET /api/auth/me
+router.post("/register", guard, authController.register);
+router.post("/login", guard, authController.login);
 router.get("/me", requireAuth, authController.me);
+router.post("/password", requireAuth, guard, authController.changePassword);
 
 module.exports = router;

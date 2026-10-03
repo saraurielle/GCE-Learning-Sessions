@@ -1,37 +1,28 @@
 /**
  * Storage configuration.
  *
- * The project currently uses flat JSON files as a lightweight "database"
- * (see each module's data/*.json). This file exists so that when you're
- * ready to move to a real database, there's a single place to set it up —
- * the controllers won't need to change how they're called, only how
- * readScores()/readUsers()-style helpers fetch data internally.
+ * The project uses flat JSON files as a lightweight "database".
+ *  - Read-only content (subjects, papers, quiz) always lives in ./data
+ *  - Data that changes while the app runs (users, scores, chat, notifications, study,
+ *    progress) lives in ./data too, unless GCE_DATA_DIR points somewhere else.
  *
- * Example upgrade path (SQLite via better-sqlite3):
- *
- *   const Database = require("better-sqlite3");
- *   const db = new Database(path.join(__dirname, "..", "data", "app.db"));
- *   module.exports = db;
- *
- * Example upgrade path (MongoDB via mongoose):
- *
- *   const mongoose = require("mongoose");
- *   async function connectDB() {
- *     await mongoose.connect(process.env.MONGO_URI);
- *     console.log("MongoDB connected");
- *   }
- *   module.exports = connectDB;
+ * services/Store.js does the reading and (atomic) writing.
  */
-
 const path = require("path");
 
+const CONTENT_DIR = path.join(__dirname, "..", "data");
+const LIVE_DIR = process.env.GCE_DATA_DIR ? path.resolve(process.env.GCE_DATA_DIR) : CONTENT_DIR;
+
 const DATA_DIR = {
-  users: path.join(__dirname, "..", "data", "users.json"),
-  subjects: path.join(__dirname, "..", "data", "subjects.json"),
-  papers: path.join(__dirname, "..", "data", "papers.json"),
-  quiz: path.join(__dirname, "..", "data", "quiz.json"),
-  scores: path.join(__dirname, "..", "data", "scores.json"),
-  chat: path.join(__dirname, "..", "data", "messages.json"),
+  subjects: path.join(CONTENT_DIR, "subjects.json"),
+  papers: path.join(CONTENT_DIR, "papers.json"),
+  quiz: path.join(CONTENT_DIR, "quiz.json"),
+  users: path.join(LIVE_DIR, "users.json"),
+  scores: path.join(LIVE_DIR, "scores.json"),
+  chat: path.join(LIVE_DIR, "messages.json"),
+  notifications: path.join(LIVE_DIR, "notifications.json"),
+  study: path.join(LIVE_DIR, "study.json"),
+  progress: path.join(LIVE_DIR, "progress.json"),
 };
 
 module.exports = { DATA_DIR };

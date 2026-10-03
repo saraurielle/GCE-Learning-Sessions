@@ -1,7 +1,4 @@
-/* Shared helpers: talks to the backend API, handles login state, escapes HTML. */
 
-// Same server (http://localhost:3000 serving both) -> relative URLs.
-// Opened from file:// or a different dev server (e.g. Live Server :5500) -> call the backend on :3000.
 const IS_SPLIT_DEV =
   location.protocol === "file:" ||
   (["localhost", "127.0.0.1"].includes(location.hostname) && location.port !== "3000");
@@ -52,7 +49,6 @@ function showError(el, message) {
   el.innerHTML = '<div class="notice error">' + esc(message) + "</div>";
 }
 
-// Show the logged-in username (or "Login") in the navbar link.
 document.addEventListener("DOMContentLoaded", () => {
   const link = document.getElementById("authLink");
   if (!link) return;
